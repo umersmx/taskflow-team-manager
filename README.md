@@ -80,22 +80,24 @@ npm run dev
 
 ---
 
-## 🧪 Testing Guidelines & Suggested Profiles
+## 🧪 Testing Guidelines & Existing Profiles
 
-To test the role hierarchies (Owner, Admin, Member) and task assignment, we recommend registering the following three test profiles:
+To test the application locally with your database, you can log in using the existing accounts you have already created (using the passwords you set during registration, e.g. `Taskflow123`):
 
-### Suggested Profiles
-| User Role | Suggested Email | Suggested Password | Test Focus |
-| :--- | :--- | :--- | :--- |
-| **Owner** | `owner@taskflow.com` | `Taskflow123` | Can create teams, assign tasks, add members, promote roles, and delete the team. |
-| **Admin** | `admin@taskflow.com` | `Taskflow123` | Can invite members, edit tasks, and change task status. Cannot delete the team. |
-| **Member** | `member@taskflow.com` | `Taskflow123` | Can update the status of tasks assigned to them. Cannot manage members or teams. |
+### Existing Test Profiles
+| User Name | Email | Main Team | Active Role | Assigned Tasks |
+| :--- | :--- | :--- | :--- | :--- |
+| **Muhammad Ali** | `ali@example.com` | Lahore Tech Hub | Owner | Write REST API documentation (To Do), Export branding logo SVG assets (To Do) |
+| **Ayesha Khan** | `ayesha@example.com` | Karachi Creative Agency | Owner | Create typography style guide (In Progress) |
+| **Hamza Ahmed** | `hamza@example.com` | Lahore Tech Hub | Member | Setup server configuration (Done) |
+| **Zainab Fatima** | `zainab@example.com` | Karachi Creative Agency | Member | Design landing page mockup (Done - Overdue) |
+| **Bilal Yousuf** | `bilal@example.com` | Lahore Tech Hub | Member | Integrate Passport authentication (In Progress) |
 
 ### Step-by-Step Test Walkthrough
-1.  **Create Team**: Log in as `owner@taskflow.com`, go to the Dashboard, click **New Team**, and name it `Alpha Squad`.
-2.  **Invite collaborators**: Inside `Alpha Squad`, go to the members panel and add `admin@taskflow.com` and `member@taskflow.com`.
-3.  **Assign Tasks**: Create a task (e.g. *\"Design landing page mockup\"*) and assign it to the Member. Set the due date to yesterday to verify the red pulse overdue alert.
-4.  **Verify Permissions**: Log in as the Member. Notice you cannot delete the team or remove other members, but you can change the task status to **In Progress** or **Done**.
+1.  **Log in as Owner**: Sign in as `ali@example.com`. Go to **Dashboard** and view the time-aware greeting and stats. You will see the tasks inside the **Lahore Tech Hub** team.
+2.  **Verify Team Management**: Open the `Lahore Tech Hub` team view. As the Owner, you can view the team members (**Hamza Ahmed**, **Bilal Yousuf**) and add/remove collaborators.
+3.  **Check Notifications & Overdue Styling**: Log in as `ayesha@example.com` (Owner of `Karachi Creative Agency`). You will see the overdue task *\"Design landing page mockup\"* (assigned to Zainab Fatima) with a red pulse overdue alert indicating it was due.
+4.  **Verify Member Restrictions**: Log in as `hamza@example.com` (Member of `Lahore Tech Hub`). Notice that you cannot delete the team or edit details, but you can change status filters and toggle task states.
 
 ---
 
