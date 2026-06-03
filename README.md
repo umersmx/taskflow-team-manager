@@ -34,7 +34,7 @@ Ensure you have [Node.js](https://nodejs.org) (v18+) installed.
 ### 2. Clone and Install
 ```bash
 # Clone the repository
-git clone <your-repo-url>
+git clone https://github.com/umersmx/taskflow-team-manager.git
 cd "full stack project"
 
 # Install backend dependencies
