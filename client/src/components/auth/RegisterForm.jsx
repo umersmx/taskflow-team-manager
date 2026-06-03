@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
-import { Eye, EyeOff, UserPlus, Loader2, Check, X } from 'lucide-react';
+import { Eye, EyeOff, UserPlus, Loader2, Sparkles, Check, X, ArrowLeft } from 'lucide-react';
 import toast from 'react-hot-toast';
 
 export default function RegisterForm() {
@@ -42,7 +42,7 @@ export default function RegisterForm() {
     try {
       await register(name, email, password);
       toast.success('Account created successfully!');
-      navigate('/');
+      navigate('/dashboard');
     } catch (err) {
       toast.error(err.response?.data?.error || 'Registration failed');
     } finally {
@@ -51,23 +51,38 @@ export default function RegisterForm() {
   }
 
   return (
-    <div className="auth-bg min-h-screen flex items-center justify-center p-4">
+    <div className="auth-bg min-h-screen flex items-center justify-center p-4 relative">
+      {/* Back to Home Link */}
+      <Link
+        to="/"
+        className="absolute top-6 left-6 flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-surface-850/40 border border-surface-700/40 text-xs font-semibold text-surface-300 hover:text-surface-50 hover:bg-surface-800/60 transition-all shadow-sm z-50 backdrop-blur-sm"
+      >
+        <ArrowLeft className="w-3.5 h-3.5" />
+        Back to Home
+      </Link>
+
       {/* Floating orbs */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-1/3 right-1/4 w-96 h-96 bg-primary-500/10 rounded-full blur-3xl animate-pulse-soft" />
-        <div className="absolute bottom-1/3 left-1/4 w-80 h-80 bg-accent-500/10 rounded-full blur-3xl animate-pulse-soft" style={{ animationDelay: '1s' }} />
+        <div className="absolute top-1/3 right-1/4 w-96 h-96 bg-primary-500/10 rounded-full blur-3xl animate-pulse-soft animate-float" />
+        <div className="absolute bottom-1/3 left-1/4 w-80 h-80 bg-accent-500/10 rounded-full blur-3xl animate-pulse-soft animate-float-delayed" />
+
+        {/* Decorative glass rings */}
+        <div className="absolute top-8 left-8 w-72 h-72 border border-primary-500/10 rounded-full pointer-events-none animate-spin-slow opacity-15" />
+        <div className="absolute bottom-8 right-8 w-56 h-56 border border-accent-500/10 rounded-full pointer-events-none animate-spin-slow opacity-20" style={{ animationDirection: 'reverse' }} />
       </div>
 
       <div className="w-full max-w-md animate-scale-in relative">
         {/* Logo area */}
         <div className="text-center mb-8">
-          <img src="/logo.png" className="h-16 mx-auto mb-4 object-contain" alt="TaskFlow Logo" />
+          <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl gradient-primary mb-4 shadow-lg shadow-primary-500/25 animate-bounce-in">
+            <Sparkles className="w-8 h-8 text-white" />
+          </div>
           <h1 className="text-3xl font-bold text-surface-50">Create account</h1>
           <p className="text-surface-400 mt-2">Get started with TaskFlow today</p>
         </div>
 
         {/* Form card */}
-        <div className="glass rounded-2xl p-8 shadow-2xl shadow-black/20">
+        <div className="glass rounded-2xl p-8 shadow-2xl shadow-black/20 hover-glow">
           <form onSubmit={handleSubmit} className="space-y-5">
             <div>
               <label htmlFor="register-name" className="block text-sm font-medium text-surface-300 mb-2">
@@ -78,7 +93,7 @@ export default function RegisterForm() {
                 type="text"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
-                placeholder="John Doe"
+                placeholder="Your Name"
                 className="w-full px-4 py-3 rounded-xl bg-surface-800/50 border border-surface-700/50 text-surface-50 placeholder-surface-500 focus:outline-none focus:ring-2 focus:ring-primary-500/50 focus:border-primary-500/50 transition-all-300"
                 required
               />
@@ -151,11 +166,10 @@ export default function RegisterForm() {
                 value={confirmPassword}
                 onChange={(e) => setConfirmPassword(e.target.value)}
                 placeholder="••••••••"
-                className={`w-full px-4 py-3 rounded-xl bg-surface-800/50 border text-surface-50 placeholder-surface-500 focus:outline-none focus:ring-2 focus:ring-primary-500/50 transition-all-300 ${
-                  confirmPassword && confirmPassword !== password
+                className={`w-full px-4 py-3 rounded-xl bg-surface-800/50 border text-surface-50 placeholder-surface-500 focus:outline-none focus:ring-2 focus:ring-primary-500/50 transition-all-300 ${confirmPassword && confirmPassword !== password
                     ? 'border-danger-500/50'
                     : 'border-surface-700/50 focus:border-primary-500/50'
-                }`}
+                  }`}
                 required
               />
               {confirmPassword && confirmPassword !== password && (
@@ -166,7 +180,7 @@ export default function RegisterForm() {
             <button
               type="submit"
               disabled={loading}
-              className="w-full py-3 px-4 rounded-xl gradient-primary text-white font-semibold hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-primary-500/50 focus:ring-offset-2 focus:ring-offset-surface-900 disabled:opacity-50 disabled:cursor-not-allowed transition-all-300 flex items-center justify-center gap-2 shadow-lg shadow-primary-500/25"
+              className="w-full py-3 px-4 rounded-xl gradient-primary text-white font-semibold hover:opacity-95 hover:scale-[1.01] active:scale-[0.99] focus:outline-none focus:ring-2 focus:ring-primary-500/50 focus:ring-offset-2 focus:ring-offset-surface-900 disabled:opacity-50 disabled:cursor-not-allowed transition-all-300 flex items-center justify-center gap-2 shadow-lg shadow-primary-500/25"
             >
               {loading ? (
                 <Loader2 className="w-5 h-5 animate-spin" />

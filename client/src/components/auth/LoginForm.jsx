@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
-import { Eye, EyeOff, LogIn, Loader2 } from 'lucide-react';
+import { Eye, EyeOff, LogIn, Loader2, Sparkles, ArrowLeft } from 'lucide-react';
 import toast from 'react-hot-toast';
 
 export default function LoginForm() {
@@ -22,7 +22,7 @@ export default function LoginForm() {
     try {
       await login(email, password);
       toast.success('Welcome back!');
-      navigate('/');
+      navigate('/dashboard');
     } catch (err) {
       toast.error(err.response?.data?.error || 'Login failed');
     } finally {
@@ -31,23 +31,38 @@ export default function LoginForm() {
   }
 
   return (
-    <div className="auth-bg min-h-screen flex items-center justify-center p-4">
+    <div className="auth-bg min-h-screen flex items-center justify-center p-4 relative">
+      {/* Back to Home Link */}
+      <Link
+        to="/"
+        className="absolute top-6 left-6 flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-surface-850/40 border border-surface-700/40 text-xs font-semibold text-surface-300 hover:text-surface-50 hover:bg-surface-800/60 transition-all shadow-sm z-50 backdrop-blur-sm"
+      >
+        <ArrowLeft className="w-3.5 h-3.5" />
+        Back to Home
+      </Link>
+
       {/* Floating orbs */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary-500/10 rounded-full blur-3xl animate-pulse-soft" />
-        <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-accent-500/10 rounded-full blur-3xl animate-pulse-soft" style={{ animationDelay: '1s' }} />
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary-500/10 rounded-full blur-3xl animate-pulse-soft animate-float" />
+        <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-accent-500/10 rounded-full blur-3xl animate-pulse-soft animate-float-delayed" />
+        
+        {/* Decorative glass rings */}
+        <div className="absolute top-12 right-12 w-64 h-64 border border-primary-500/10 rounded-full pointer-events-none animate-spin-slow opacity-20" />
+        <div className="absolute bottom-12 left-12 w-48 h-48 border border-accent-500/10 rounded-full pointer-events-none animate-spin-slow opacity-15" style={{ animationDirection: 'reverse' }} />
       </div>
 
       <div className="w-full max-w-md animate-scale-in relative">
         {/* Logo area */}
         <div className="text-center mb-8">
-          <img src="/logo.png" className="h-16 mx-auto mb-4 object-contain" alt="TaskFlow Logo" />
+          <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl gradient-primary mb-4 shadow-lg shadow-primary-500/25 animate-bounce-in">
+            <Sparkles className="w-8 h-8 text-white" />
+          </div>
           <h1 className="text-3xl font-bold text-surface-50">Welcome back</h1>
           <p className="text-surface-400 mt-2">Sign in to your TaskFlow account</p>
         </div>
 
         {/* Form card */}
-        <div className="glass rounded-2xl p-8 shadow-2xl shadow-black/20">
+        <div className="glass rounded-2xl p-8 shadow-2xl shadow-black/20 hover-glow">
           <form onSubmit={handleSubmit} className="space-y-5">
             <div>
               <label htmlFor="login-email" className="block text-sm font-medium text-surface-300 mb-2">
@@ -91,7 +106,7 @@ export default function LoginForm() {
             <button
               type="submit"
               disabled={loading}
-              className="w-full py-3 px-4 rounded-xl gradient-primary text-white font-semibold hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-primary-500/50 focus:ring-offset-2 focus:ring-offset-surface-900 disabled:opacity-50 disabled:cursor-not-allowed transition-all-300 flex items-center justify-center gap-2 shadow-lg shadow-primary-500/25"
+              className="w-full py-3 px-4 rounded-xl gradient-primary text-white font-semibold hover:opacity-95 hover:scale-[1.01] active:scale-[0.99] focus:outline-none focus:ring-2 focus:ring-primary-500/50 focus:ring-offset-2 focus:ring-offset-surface-900 disabled:opacity-50 disabled:cursor-not-allowed transition-all-300 flex items-center justify-center gap-2 shadow-lg shadow-primary-500/25"
             >
               {loading ? (
                 <Loader2 className="w-5 h-5 animate-spin" />

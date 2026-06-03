@@ -4,6 +4,7 @@ import { AuthProvider, useAuth } from './contexts/AuthContext';
 import Layout from './components/layout/Layout';
 import LoginForm from './components/auth/LoginForm';
 import RegisterForm from './components/auth/RegisterForm';
+import Landing from './pages/Landing';
 import Dashboard from './pages/Dashboard';
 import TeamDetail from './pages/TeamDetail';
 import NotFound from './pages/NotFound';
@@ -45,7 +46,7 @@ function GuestRoute({ children }) {
   }
 
   if (isAuthenticated) {
-    return <Navigate to="/" replace />;
+    return <Navigate to="/dashboard" replace />;
   }
 
   return children;
@@ -78,13 +79,16 @@ export default function App() {
         />
 
         <Routes>
+          {/* Public landing page */}
+          <Route path="/" element={<Landing />} />
+
           {/* Auth routes */}
           <Route path="/login" element={<GuestRoute><LoginForm /></GuestRoute>} />
           <Route path="/register" element={<GuestRoute><RegisterForm /></GuestRoute>} />
 
           {/* Protected routes */}
           <Route element={<ProtectedRoute><Layout /></ProtectedRoute>}>
-            <Route index element={<Dashboard />} />
+            <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/teams/:id" element={<TeamDetail />} />
           </Route>
 

@@ -38,6 +38,17 @@ export default function Sidebar({ isOpen, isCollapsed, onClose, onToggleCollapse
     return <User className="w-3 h-3 text-surface-500" />;
   };
 
+  const getTeamAvatarStyle = (id) => {
+    const styles = [
+      'bg-primary-550/15 text-primary-500 border border-primary-500/20',
+      'bg-warning-550/15 text-warning-500 border border-warning-500/20',
+      'bg-info-550/15 text-info-500 border border-info-500/20',
+      'bg-danger-550/15 text-danger-500 border border-danger-500/20',
+      'bg-accent-550/15 text-accent-500 border border-accent-500/20',
+    ];
+    return styles[id % styles.length];
+  };
+
   return (
     <aside
       className={`fixed top-0 left-0 h-full z-50 glass border-r border-surface-700/30 transition-all duration-300 flex flex-col
@@ -48,22 +59,14 @@ export default function Sidebar({ isOpen, isCollapsed, onClose, onToggleCollapse
     >
       {/* Header */}
       <div className={`flex items-center border-b border-surface-700/30 ${isCollapsed ? 'flex-col gap-2 p-3 justify-center' : 'justify-between p-4'}`}>
-        <div className={`flex items-center ${isCollapsed ? 'justify-center' : ''} animate-fade-in`}>
-          {isCollapsed ? (
-            <div className="w-10 h-10 overflow-hidden rounded-xl flex-shrink-0 border border-surface-700/30">
-              <img
-                src="/logo.png"
-                alt="TaskFlow"
-                className="w-full h-full object-cover object-left"
-              />
-            </div>
-          ) : (
-            <div className="h-10 flex items-center">
-              <img
-                src="/logo.png"
-                alt="TaskFlow"
-                className="h-8 object-contain"
-              />
+        <div className={`flex items-center ${isCollapsed ? 'justify-center' : 'gap-3'} animate-fade-in`}>
+          <div className="w-10 h-10 rounded-xl gradient-primary flex items-center justify-center shadow-lg shadow-primary-500/20 flex-shrink-0">
+            <Sparkles className="w-5 h-5 text-white" />
+          </div>
+          {!isCollapsed && (
+            <div>
+              <h2 className="font-bold text-surface-50 text-lg leading-tight">TaskFlow</h2>
+              <p className="text-xs text-surface-400">Team Manager</p>
             </div>
           )}
         </div>
@@ -88,7 +91,7 @@ export default function Sidebar({ isOpen, isCollapsed, onClose, onToggleCollapse
       {/* Navigation */}
       <nav className="flex-1 overflow-y-auto p-3 space-y-1">
         <NavLink
-          to="/"
+          to="/dashboard"
           end
           onClick={onClose}
           className={({ isActive }) =>
@@ -110,7 +113,7 @@ export default function Sidebar({ isOpen, isCollapsed, onClose, onToggleCollapse
               <span className="text-xs font-semibold text-surface-500 uppercase tracking-wider">Teams</span>
               <button
                 onClick={() => {
-                  navigate('/');
+                  navigate('/dashboard');
                   onClose();
                   // Trigger team creation modal
                   setTimeout(() => window.dispatchEvent(new CustomEvent('open-create-team')), 100);
@@ -142,7 +145,7 @@ export default function Sidebar({ isOpen, isCollapsed, onClose, onToggleCollapse
                   } ${isCollapsed ? 'justify-center' : ''}`
                 }
               >
-                <div className="w-8 h-8 rounded-lg bg-surface-700/50 flex items-center justify-center flex-shrink-0 text-xs font-bold text-surface-300">
+                <div className={`w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 text-xs font-bold ${getTeamAvatarStyle(team.id)}`}>
                   {team.name.charAt(0).toUpperCase()}
                 </div>
                 {!isCollapsed && (
@@ -170,8 +173,11 @@ export default function Sidebar({ isOpen, isCollapsed, onClose, onToggleCollapse
       {user && (
         <div className="p-3 border-t border-surface-700/30">
           <div className={`flex items-center gap-3 px-3 py-2 rounded-xl ${isCollapsed ? 'justify-center' : ''}`}>
-            <div className="w-9 h-9 rounded-full gradient-accent flex items-center justify-center flex-shrink-0 text-sm font-bold text-white shadow-md">
-              {user.name?.charAt(0).toUpperCase()}
+            <div className="relative flex-shrink-0">
+              <div className="w-9 h-9 rounded-full gradient-accent flex items-center justify-center text-sm font-bold text-white shadow-md">
+                {user.name?.charAt(0).toUpperCase()}
+              </div>
+              <span className="absolute bottom-0 right-0 w-2.5 h-2.5 rounded-full bg-accent-500 border border-surface-950 animate-pulse-soft" />
             </div>
             {!isCollapsed && (
               <div className="min-w-0">

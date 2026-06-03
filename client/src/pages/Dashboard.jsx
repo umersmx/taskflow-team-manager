@@ -23,6 +23,9 @@ export default function Dashboard() {
   const [taskModal, setTaskModal] = useState({ open: false, task: null });
   const [teamModal, setTeamModal] = useState(false);
 
+  // Motivational Quotes
+  const [quote, setQuote] = useState('');
+
   const loadData = useCallback(async () => {
     try {
       const [teamsRes, tasksRes, remindersRes] = await Promise.all([
@@ -63,6 +66,27 @@ export default function Dashboard() {
     window.addEventListener('open-create-team', handleOpenTeam);
     return () => window.removeEventListener('open-create-team', handleOpenTeam);
   }, []);
+
+  // Pick a motivational quote
+  useEffect(() => {
+    const quotes = [
+      "Simplicity is the ultimate sophistication.",
+      "Focus on being productive instead of busy.",
+      "The best way to predict the future is to create it.",
+      "Make it simple, but significant.",
+      "Small steps every day lead to big results.",
+      "Action is the foundational key to all success."
+    ];
+    const index = new Date().getDate() % quotes.length;
+    setQuote(quotes[index]);
+  }, []);
+
+  const getGreeting = () => {
+    const hour = new Date().getHours();
+    if (hour < 12) return 'Good morning';
+    if (hour < 17) return 'Good afternoon';
+    return 'Good evening';
+  };
 
   async function handleCreateTask(data) {
     try {
@@ -123,9 +147,17 @@ export default function Dashboard() {
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 animate-fade-in">
         <div>
           <h1 className="text-2xl md:text-3xl font-bold text-surface-50">
-            Welcome back, <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-400 to-accent-400">{user?.name?.split(' ')[0]}</span>
+            {getGreeting()}, <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-400 to-accent-400">{user?.name?.split(' ')[0]}</span>
           </h1>
-          <p className="text-surface-400 mt-1">Here's what's happening with your teams today.</p>
+          <div className="text-surface-450 text-sm mt-1 flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-2">
+            <span>Here's what's happening with your teams today.</span>
+            {quote && (
+              <>
+                <span className="hidden sm:inline text-surface-600">•</span>
+                <span className="text-xs text-primary-450 italic font-medium">"{quote}"</span>
+              </>
+            )}
+          </div>
         </div>
 
         <div className="flex items-center gap-3">

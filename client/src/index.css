@@ -47,6 +47,10 @@
   --color-warning-500: #f59e0b;
   --color-warning-600: #d97706;
 
+  --color-info-400: #60a5fa;
+  --color-info-500: #3b82f6;
+  --color-info-600: #2563eb;
+
   --font-family-sans: 'Inter', system-ui, -apple-system, sans-serif;
 
   --animate-fade-in: fade-in 0.5s ease-out;
@@ -55,6 +59,12 @@
   --animate-scale-in: scale-in 0.2s ease-out;
   --animate-pulse-soft: pulse-soft 2s ease-in-out infinite;
   --animate-shimmer: shimmer 2s linear infinite;
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-float-delayed: float 6s ease-in-out 2s infinite;
+  --animate-glow-pulse: glow-pulse 3s ease-in-out infinite;
+  --animate-count-up: count-up 0.6s ease-out;
+  --animate-slide-down: slide-down 0.3s ease-out;
+  --animate-bounce-in: bounce-in 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 
   @keyframes fade-in {
     from { opacity: 0; }
@@ -63,6 +73,11 @@
 
   @keyframes slide-up {
     from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes slide-down {
+    from { opacity: 0; transform: translateY(-10px); }
     to { opacity: 1; transform: translateY(0); }
   }
 
@@ -84,6 +99,38 @@
   @keyframes shimmer {
     0% { background-position: -200% 0; }
     100% { background-position: 200% 0; }
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    33% { transform: translateY(-12px) rotate(1deg); }
+    66% { transform: translateY(6px) rotate(-1deg); }
+  }
+
+  @keyframes glow-pulse {
+    0%, 100% { box-shadow: 0 0 20px rgba(16, 185, 129, 0.08); }
+    50% { box-shadow: 0 0 40px rgba(16, 185, 129, 0.15); }
+  }
+
+  @keyframes count-up {
+    from { opacity: 0; transform: translateY(12px) scale(0.9); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+  }
+
+  @keyframes bounce-in {
+    from { opacity: 0; transform: scale(0.3); }
+    50% { transform: scale(1.05); }
+    to { opacity: 1; transform: scale(1); }
+  }
+
+  @keyframes gradient-shift {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+  }
+
+  @keyframes spin-slow {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
   }
 }
 
@@ -136,6 +183,14 @@ html {
   border: 1px solid rgba(228, 228, 231, 0.4);
 }
 
+/* Deep glass for modals/overlays */
+.glass-deep {
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(32px) saturate(1.4);
+  -webkit-backdrop-filter: blur(32px) saturate(1.4);
+  border: 1px solid rgba(228, 228, 231, 0.7);
+}
+
 /* ── Gradient Backgrounds (Light & Muted) ── */
 .gradient-mesh {
   background:
@@ -144,12 +199,28 @@ html {
     radial-gradient(at 50% 50%, rgba(16, 185, 129, 0.01) 0, transparent 40%);
 }
 
+/* Richer mesh for landing/hero */
+.gradient-mesh-rich {
+  background:
+    radial-gradient(ellipse at 10% 0%, rgba(16, 185, 129, 0.08) 0, transparent 50%),
+    radial-gradient(ellipse at 90% 100%, rgba(52, 211, 153, 0.05) 0, transparent 50%),
+    radial-gradient(ellipse at 50% 50%, rgba(5, 150, 105, 0.03) 0, transparent 60%),
+    radial-gradient(ellipse at 0% 100%, rgba(59, 130, 246, 0.02) 0, transparent 40%);
+}
+
 .gradient-primary {
   background: linear-gradient(135deg, var(--color-primary-500), var(--color-primary-700));
 }
 
 .gradient-accent {
   background: linear-gradient(135deg, var(--color-primary-400), var(--color-primary-600));
+}
+
+/* Animated gradient for premium CTA buttons */
+.gradient-animated {
+  background: linear-gradient(135deg, var(--color-primary-500), var(--color-primary-600), var(--color-primary-500));
+  background-size: 200% 200%;
+  animation: gradient-shift 3s ease-in-out infinite;
 }
 
 .gradient-border {
@@ -174,9 +245,58 @@ html {
 .auth-bg {
   background: var(--color-surface-950);
   background-image:
-    radial-gradient(at 0% 0%, rgba(16, 185, 129, 0.05) 0, transparent 50%),
-    radial-gradient(at 100% 100%, rgba(5, 150, 105, 0.03) 0, transparent 50%),
-    radial-gradient(at 50% 50%, rgba(16, 185, 129, 0.01) 0, transparent 50%);
+    radial-gradient(at 0% 0%, rgba(16, 185, 129, 0.06) 0, transparent 50%),
+    radial-gradient(at 100% 100%, rgba(5, 150, 105, 0.04) 0, transparent 50%),
+    radial-gradient(at 50% 50%, rgba(16, 185, 129, 0.02) 0, transparent 50%);
+}
+
+/* ── Card Hover Glow Effect ── */
+.hover-glow {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.hover-glow:hover {
+  box-shadow:
+    0 8px 25px -5px rgba(16, 185, 129, 0.08),
+    0 0 0 1px rgba(16, 185, 129, 0.06);
+  border-color: rgba(16, 185, 129, 0.15);
+  transform: translateY(-2px);
+}
+
+/* ── Task Card Left Accent Strip ── */
+.card-accent-left {
+  position: relative;
+  overflow: hidden;
+}
+
+.card-accent-left::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  border-radius: 3px 0 0 3px;
+  transition: all 0.3s ease;
+}
+
+.card-accent-todo::before { background: var(--color-surface-500); }
+.card-accent-in_progress::before { background: var(--color-primary-500); }
+.card-accent-review::before { background: var(--color-warning-500); }
+.card-accent-done::before { background: var(--color-accent-500); }
+
+/* ── Floating Particle Dots ── */
+.particle {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  opacity: 0.3;
+}
+
+/* ── Dot Grid Pattern (for landing hero bg) ── */
+.dot-grid {
+  background-image: radial-gradient(circle, rgba(16, 185, 129, 0.08) 1px, transparent 1px);
+  background-size: 32px 32px;
 }
 
 /* ── Transitions ── */
@@ -193,4 +313,56 @@ html {
 /* ── Toast Overrides ── */
 [data-sonner-toaster] {
   font-family: 'Inter', system-ui, sans-serif !important;
+}
+
+/* ── Stat number count-up entrance ── */
+.stat-value {
+  animation: count-up 0.6s ease-out both;
+}
+
+/* ── Progress Bar ── */
+.progress-bar {
+  position: relative;
+  overflow: hidden;
+  border-radius: 999px;
+}
+
+.progress-bar::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+  animation: shimmer 2s linear infinite;
+  background-size: 200% 100%;
+}
+
+/* ── Animated Gradient Text ── */
+.gradient-text-animated {
+  background: linear-gradient(135deg, var(--color-primary-400), var(--color-primary-600), var(--color-accent-400));
+  background-size: 200% 200%;
+  animation: gradient-shift 4s ease-in-out infinite;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ── Subtle line decoration ── */
+.line-accent {
+  position: relative;
+}
+
+.line-accent::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 40px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--color-primary-500), transparent);
+  border-radius: 2px;
+}
+
+/* ── Spin slow (for decorative elements) ── */
+.animate-spin-slow {
+  animation: spin-slow 20s linear infinite;
 }

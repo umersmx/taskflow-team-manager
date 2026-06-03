@@ -21,7 +21,7 @@ export default function TaskCard({ task, onEdit, onDelete }) {
   const isOverdue = task.due_date && new Date(task.due_date) < new Date() && task.status !== 'done';
 
   return (
-    <div className="glass rounded-xl p-4 border border-surface-700/60 hover:border-surface-500/40 transition-all-300 group hover:shadow-md animate-fade-in">
+    <div className={`glass rounded-xl p-4 pl-5 border border-surface-700/60 hover-glow group animate-fade-in card-accent-left card-accent-${task.status}`}>
       <div className="flex items-start justify-between gap-3">
         <div className="flex-1 min-w-0">
           {/* Status + Priority */}
@@ -51,7 +51,7 @@ export default function TaskCard({ task, onEdit, onDelete }) {
           <div className="flex items-center gap-3 flex-wrap">
             {task.team_name && (
               <span className="text-[11px] text-surface-500 flex items-center gap-1">
-                <span className="w-4 h-4 rounded bg-surface-700/50 flex items-center justify-center text-[9px] font-bold">
+                <span className="w-4 h-4 rounded bg-surface-700/50 flex items-center justify-center text-[9px] font-bold text-surface-300">
                   {task.team_name.charAt(0)}
                 </span>
                 {task.team_name}
@@ -66,7 +66,7 @@ export default function TaskCard({ task, onEdit, onDelete }) {
             )}
 
             {task.due_date && (
-              <span className={`text-[11px] flex items-center gap-1 ${isOverdue ? 'text-danger-400' : 'text-surface-500'}`}>
+              <span className={`text-[11px] flex items-center gap-1 ${isOverdue ? 'text-danger-400 animate-pulse-soft font-semibold' : 'text-surface-500'}`}>
                 <Calendar className="w-3 h-3" />
                 {format(new Date(task.due_date), 'MMM d')}
               </span>
@@ -78,13 +78,13 @@ export default function TaskCard({ task, onEdit, onDelete }) {
         <div className="flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
           <button
             onClick={() => onEdit(task)}
-            className="p-1.5 rounded-lg hover:bg-surface-700/50 text-surface-400 hover:text-primary-400 transition-colors"
+            className="p-1.5 rounded-lg hover:bg-surface-800 text-surface-400 hover:text-primary-400 transition-colors"
           >
             <Pencil className="w-3.5 h-3.5" />
           </button>
           <button
             onClick={() => onDelete(task.id)}
-            className="p-1.5 rounded-lg hover:bg-surface-700/50 text-surface-400 hover:text-danger-400 transition-colors"
+            className="p-1.5 rounded-lg hover:bg-surface-800 text-surface-400 hover:text-danger-400 transition-colors"
           >
             <Trash2 className="w-3.5 h-3.5" />
           </button>

@@ -46,7 +46,7 @@ export default function TeamDetail() {
       setTeamMembers({ [id]: teamRes.data.team.members });
     } catch (err) {
       toast.error('Failed to load team');
-      navigate('/');
+      navigate('/dashboard');
     } finally {
       setLoading(false);
     }
@@ -79,7 +79,7 @@ export default function TeamDetail() {
       await teamsAPI.delete(id);
       toast.success('Team deleted');
       window.dispatchEvent(new CustomEvent('teams-updated'));
-      navigate('/');
+      navigate('/dashboard');
     } catch (err) {
       toast.error(err.response?.data?.error || 'Failed to delete team');
     }
@@ -181,7 +181,7 @@ export default function TeamDetail() {
       {/* Header */}
       <div className="animate-fade-in">
         <button
-          onClick={() => navigate('/')}
+          onClick={() => navigate('/dashboard')}
           className="flex items-center gap-1.5 text-sm text-surface-400 hover:text-surface-200 transition-colors mb-4"
         >
           <ArrowLeft className="w-4 h-4" />

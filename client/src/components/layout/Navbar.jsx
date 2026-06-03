@@ -51,7 +51,7 @@ export default function Navbar({ onMenuClick }) {
         <div className="flex items-center gap-2 ml-auto">
           {/* Reminders bell */}
           <button
-            onClick={() => navigate('/')}
+            onClick={() => navigate('/dashboard')}
             className="relative p-2.5 rounded-xl hover:bg-surface-700/50 text-surface-400 hover:text-surface-200 transition-colors"
           >
             <Bell className="w-5 h-5" />
