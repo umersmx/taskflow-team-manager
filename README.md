@@ -85,13 +85,13 @@ npm run dev
 To test the application locally with your database, you can log in using the existing accounts you have already created (using the passwords you set during registration, e.g. `Taskflow123`):
 
 ### Existing Test Profiles
-| User Name | Email | Main Team | Active Role | Assigned Tasks |
+| User Name | Email | Password | Active Role | Assigned Tasks |
 | :--- | :--- | :--- | :--- | :--- |
-| **Muhammad Ali** | `ali@example.com` | Lahore Tech Hub | Owner | Write REST API documentation (To Do), Export branding logo SVG assets (To Do) |
-| **Ayesha Khan** | `ayesha@example.com` | Karachi Creative Agency | Owner | Create typography style guide (In Progress) |
-| **Hamza Ahmed** | `hamza@example.com` | Lahore Tech Hub | Member | Setup server configuration (Done) |
-| **Zainab Fatima** | `zainab@example.com` | Karachi Creative Agency | Member | Design landing page mockup (Done - Overdue) |
-| **Bilal Yousuf** | `bilal@example.com` | Lahore Tech Hub | Member | Integrate Passport authentication (In Progress) |
+| **Muhammad Ali** | `ali@example.com` | `Password123!` | Owner | Write REST API documentation (To Do), Export branding logo SVG assets (To Do) |
+| **Ayesha Khan** | `ayesha@example.com` | `Password123!` | Owner | Create typography style guide (In Progress) |
+| **Hamza Ahmed** | `hamza@example.com` | `Password123!` | Member | Setup server configuration (Done) |
+| **Zainab Fatima** | `zainab@example.com` | `Password123!` | Member | Design landing page mockup (Done - Overdue) |
+| **Bilal Yousuf** | `bilal@example.com` | `Password123!` | Member | Integrate Passport authentication (In Progress) |
 
 ### Step-by-Step Test Walkthrough
 1.  **Log in as Owner**: Sign in as `ali@example.com`. Go to **Dashboard** and view the time-aware greeting and stats. You will see the tasks inside the **Lahore Tech Hub** team.
