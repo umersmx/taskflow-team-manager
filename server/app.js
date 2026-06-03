@@ -15,12 +15,28 @@ app.set('trust proxy', 1);
 
 
 // ── CORS Configuration ──
+const allowedOrigins = [
+  'http://localhost:5173',
+  'https://client-gamma-nine-54.vercel.app',
+  'https://taskflow-team.vercel.app',
+  'https://taskflow-production-11cf.up.railway.app'
+];
+
+
 app.use(
   cors({
-    origin: process.env.CLIENT_URL || 'http://localhost:5173',
+    origin: (origin, callback) => {
+      // Allow requests with no origin (like mobile apps or curl)
+      if (!origin) return callback(null, true);
+      if (allowedOrigins.includes(origin)) {
+        return callback(null, true);
+      }
+      return callback(new Error('CORS not allowed for origin: ' + origin), false);
+    },
     credentials: true,
   })
 );
+
 
 // ── Body Parsing ──
 app.use(express.json());
@@ -48,6 +64,18 @@ app.use('/api/*', (req, res) => {
   res.status(404).json({ error: 'API endpoint not found' });
 });
 
+// Serve static files from React frontend
+const path = require('path');
+app.use(express.static(path.join(__dirname, '../client/dist')));
+
+// Fallback all non-API GET requests to React's index.html
+app.get('*', (req, res, next) => {
+  if (req.path.startsWith('/api/')) {
+    return next();
+  }
+  res.sendFile(path.join(__dirname, '../client/dist/index.html'));
+});
+
 // ── Global Error Handler ──
 app.use((err, req, res, next) => {
   console.error('Unhandled error:', err);
@@ -55,3 +83,4 @@ app.use((err, req, res, next) => {
 });
 
 module.exports = app;
+
