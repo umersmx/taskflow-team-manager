@@ -1,173 +1,149 @@
-# TaskFlow — Team Task Manager
+# TaskFlow — Modern Team Task Manager
 
-A full-stack Team Task Manager web application built with React, Node.js, Express, and PostgreSQL.
+TaskFlow is a premium, Nordic-minimalist full-stack task management application designed for agile teams. It enables secure team creation, granular member role hierarchies, task delegations, and smart calendar reminders.
 
-## Tech Stack
+---
+
+## 🌟 Key Features
+
+*   **Premium Glassmorphic UI/UX**: Crafted with dynamic gradient effects, floating particle background animations, responsive navigation sidebar, and soft, harmonic color accents.
+*   **Time-Aware Dashboard**: Greets the logged-in user dynamically based on the system time and displays a rotating selection of daily developer motivation quotes.
+*   **Role-Based Access Control (RBAC)**: Owner, Admin, and Member permissions control who can delete teams, assign tasks, and manage collaborators.
+*   **Smart Overdue Alerts**: Distinct, pulse-animated indicators warn users of tasks past their due dates.
+*   **No-Config SQLite Fallback**: Instantly runs locally out-of-the-box using SQLite if no PostgreSQL instance is detected.
+*   **Neon DB Support**: Ready for serverless cloud databases in production.
+
+---
+
+## 🛠️ Tech Stack
 
 | Layer | Technology |
-|-------|-----------|
-| Frontend | React 18 + Vite + Tailwind CSS v4 |
-| Backend | Node.js + Express.js |
-| Auth | Passport.js (Local Strategy) + Express Session + bcrypt |
-| Database | PostgreSQL |
-| Session Store | `connect-pg-simple` (prod) / MemoryStore (dev) |
-| Validation | `express-validator` |
+| :--- | :--- |
+| **Frontend** | React 19, Vite, Tailwind CSS v4, Lucide Icons, Axios |
+| **Backend** | Node.js, Express.js, Passport.js (Local Strategy), Express Session |
+| **Database** | PostgreSQL (Primary) / SQLite via `better-sqlite3` (Zero-config fallback) |
+| **Styling** | Vanilla CSS over Tailwind v4 utility design |
 
-## Features
+---
 
-- **Authentication**: Secure login/register with bcrypt password hashing and HTTP-only session cookies
-- **Team Management**: Create teams, add/remove members, role-based access control (Owner/Admin/Member)
-- **Task Management**: Full CRUD for tasks with status, priority, due dates, and assignments
-- **Search & Filtering**: Filter tasks by team, assignee, status, priority, and text search
-- **Due Date Reminders**: Dashboard alerts for overdue and upcoming tasks
-- **Email Invitations**: Stubbed invitation system (records created in DB, auto-accepted on registration)
-- **Role-Based Access Control**: Only owners can delete teams, only owners/admins can manage members
-- **Responsive Design**: Mobile-first with collapsible sidebar and adaptive layouts
-- **Premium UI**: Glassmorphism, gradient effects, micro-animations, Inter font
+## 🚀 Local Quick Start
 
-## Prerequisites
+### 1. Prerequisites
+Ensure you have [Node.js](https://nodejs.org) (v18+) installed.
 
-- **Node.js** v18+
-- **PostgreSQL** v14+ (running locally or on GCP Cloud SQL)
-
-## Setup Instructions
-
-### 1. Clone the repository
-
+### 2. Clone and Install
 ```bash
+# Clone the repository
 git clone <your-repo-url>
 cd "full stack project"
-```
 
-### 2. Set up the database
-
-Create a PostgreSQL database:
-
-```sql
-CREATE DATABASE team_task_manager;
-```
-
-The schema is automatically initialized when the server starts for the first time.
-
-### 3. Configure environment variables
-
-```bash
-cp .env.example server/.env
-```
-
-Edit `server/.env` with your PostgreSQL connection string:
-
-```env
-DATABASE_URL=postgresql://postgres:your_password@localhost:5432/team_task_manager
-SESSION_SECRET=your-random-secret-key
-```
-
-### 4. Install dependencies
-
-```bash
-# Backend
+# Install backend dependencies
 cd server
 npm install
 
-# Frontend
+# Install frontend dependencies
 cd ../client
 npm install
 ```
 
-### 5. Start the development servers
+### 3. Database & Environment Setup
+If you want to run with **Zero-Config SQLite (Default)**:
+*   You don't need to do anything! The app automatically generates a local database file at `server/db/db.sqlite` on startup.
 
-**Terminal 1 — Backend:**
+If you want to run with **PostgreSQL**:
+1.  Create a database:
+    ```sql
+    CREATE DATABASE team_task_manager;
+    ```
+2.  Create a file named `.env` in the `server` directory and paste your connection string:
+    ```env
+    DATABASE_URL=postgresql://username:password@localhost:5432/team_task_manager
+    SESSION_SECRET=a-secure-random-key-string
+    ```
+
+### 4. Running the Application
+Open two separate terminal windows:
+
+**Terminal 1 (Backend API)**:
 ```bash
 cd server
 npm run dev
 ```
+*Runs on `http://localhost:5000`*
 
-**Terminal 2 — Frontend:**
+**Terminal 2 (Frontend Client)**:
 ```bash
 cd client
 npm run dev
 ```
+*Runs on `http://localhost:5173`*
 
-The frontend runs at `http://localhost:5173` and proxies API requests to `http://localhost:5000`.
+---
 
-## API Documentation
+## 🧪 Testing Guidelines & Suggested Profiles
 
-### Auth Routes (`/api/auth`)
+To test the role hierarchies (Owner, Admin, Member) and task assignment, we recommend registering the following three test profiles:
 
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| POST | `/api/auth/register` | Register new user |
-| POST | `/api/auth/login` | Login |
-| POST | `/api/auth/logout` | Logout |
-| GET | `/api/auth/me` | Get current user |
+### Suggested Profiles
+| User Role | Suggested Email | Suggested Password | Test Focus |
+| :--- | :--- | :--- | :--- |
+| **Owner** | `owner@taskflow.com` | `Taskflow123` | Can create teams, assign tasks, add members, promote roles, and delete the team. |
+| **Admin** | `admin@taskflow.com` | `Taskflow123` | Can invite members, edit tasks, and change task status. Cannot delete the team. |
+| **Member** | `member@taskflow.com` | `Taskflow123` | Can update the status of tasks assigned to them. Cannot manage members or teams. |
 
-### Team Routes (`/api/teams`)
+### Step-by-Step Test Walkthrough
+1.  **Create Team**: Log in as `owner@taskflow.com`, go to the Dashboard, click **New Team**, and name it `Alpha Squad`.
+2.  **Invite collaborators**: Inside `Alpha Squad`, go to the members panel and add `admin@taskflow.com` and `member@taskflow.com`.
+3.  **Assign Tasks**: Create a task (e.g. *\"Design landing page mockup\"*) and assign it to the Member. Set the due date to yesterday to verify the red pulse overdue alert.
+4.  **Verify Permissions**: Log in as the Member. Notice you cannot delete the team or remove other members, but you can change the task status to **In Progress** or **Done**.
 
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| GET | `/api/teams` | List user's teams |
-| POST | `/api/teams` | Create team |
-| GET | `/api/teams/:id` | Get team details |
-| PUT | `/api/teams/:id` | Update team |
-| DELETE | `/api/teams/:id` | Delete team (owner only) |
-| POST | `/api/teams/:id/members` | Add member |
-| DELETE | `/api/teams/:id/members/:userId` | Remove member |
-| POST | `/api/teams/:id/invite` | Invite via email |
+---
 
-### Task Routes (`/api/tasks`)
+## ☁️ Cloud Deployment (Vercel & Render)
 
-| Method | Endpoint | Description | Filters |
-|--------|----------|-------------|---------|
-| GET | `/api/tasks` | List tasks | `?team_id=&assigned_to=&status=&priority=&search=` |
-| POST | `/api/tasks` | Create task | — |
-| GET | `/api/tasks/:id` | Get task | — |
-| PUT | `/api/tasks/:id` | Update task | — |
-| DELETE | `/api/tasks/:id` | Delete task | — |
-| GET | `/api/tasks/reminders` | Get reminders | — |
+Since this project has been fully optimized for cross-domain cookie authentication, you can deploy it to free hosting providers:
 
-## Project Structure
+### 1. Backend Service (Render)
+*   **Root Directory**: `server`
+*   **Environment Variables**:
+    *   `NODE_ENV` = `production`
+    *   `DATABASE_URL` = *(Your Neon PostgreSQL connection string)*
+    *   `SESSION_SECRET` = *(Any secure random secret)*
+    *   `CLIENT_URL` = *(Your frontend Vercel URL, e.g., `https://your-app.vercel.app`)*
+
+### 2. Frontend App (Vercel)
+*   **Root Directory**: `client`
+*   **Framework Preset**: `Vite`
+*   **Environment Variables**:
+    *   `VITE_API_URL` = `https://your-backend.onrender.com/api` (Remember to append `/api`)
+
+---
+
+## 📂 Project Structure
 
 ```
-├── client/                    # React frontend
+├── client/                     # React Frontend
 │   ├── src/
-│   │   ├── components/        # Reusable components
-│   │   ├── contexts/          # React contexts (Auth)
-│   │   ├── pages/             # Page components
-│   │   ├── services/          # API service layer
-│   │   ├── App.jsx            # Main app with routing
-│   │   └── index.css          # Tailwind + custom styles
-│   └── vite.config.js
+│   │   ├── components/         # Dashboard stats, auth forms, task cards, layout
+│   │   ├── contexts/           # Authentication state context
+│   │   ├── pages/              # Landing, Dashboard, Team Detail, 404
+│   │   ├── services/           # Axios API Client
+│   │   └── index.css           # Premium Tailwind theme definitions
+│   └── vercel.json             # Vercel single-page rewrite router
 │
-├── server/                    # Express backend
-│   ├── config/                # DB, Passport, Session config
-│   ├── middleware/            # Auth, Roles, Validation
-│   ├── routes/                # API route handlers
-│   ├── validators/            # Input validation rules
-│   ├── db/                    # SQL schema
-│   ├── app.js                 # Express app setup
-│   └── server.js              # Entry point
-│
-└── README.md
+├── server/                     # Node/Express Backend
+│   ├── config/                 # DB connectors, Passport, session setups
+│   ├── db/                     # SQL migration schemes & SQLite file storage
+│   ├── middleware/             # Role guards, validation formatters
+│   ├── routes/                 # Express API routing channels
+│   └── server.js               # Web server entry point
 ```
 
-## Security
+---
 
-- Passwords hashed with bcrypt (12 salt rounds)
-- HTTP-only session cookies with SameSite=Lax
-- All inputs validated and sanitized via express-validator
-- SQL injection prevented with parameterized queries
-- CORS restricted to frontend origin
-- All non-auth routes protected by authentication middleware
-- Role-based authorization for destructive operations
-
-## Deployment (Google Cloud Platform)
-
-1. Set up a **Cloud SQL PostgreSQL** instance
-2. Deploy the backend to **Cloud Run** or **App Engine**
-3. Build the frontend (`npm run build`) and serve static files, or deploy to **Cloud Storage** with **Cloud CDN**
-4. Set environment variables in the deployment configuration
-5. Update `CLIENT_URL` and CORS settings for production
-
-## License
-
-MIT
+## 🔒 Security Practices
+*   Passwords hashed using `bcrypt` (12 rounds).
+*   Express Session cookies protected with `HttpOnly` and `SameSite` configurations.
+*   Cross-Origin Resource Sharing (CORS) strictly tied to `CLIENT_URL`.
+*   Parameterized SQL queries preventing SQL injections.
+*   Inputs sanitized using `express-validator`.
