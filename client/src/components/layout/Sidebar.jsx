@@ -47,29 +47,23 @@ export default function Sidebar({ isOpen, isCollapsed, onClose, onToggleCollapse
       `}
     >
       {/* Header */}
-      <div className="flex items-center justify-between p-4 border-b border-surface-700/30">
-        {!isCollapsed && (
-          <div className="flex items-center gap-3 animate-fade-in">
-            <div className="w-10 h-10 rounded-xl gradient-primary flex items-center justify-center shadow-lg shadow-primary-500/20">
-              <Sparkles className="w-5 h-5 text-white" />
-            </div>
+      <div className={`flex items-center border-b border-surface-700/30 ${isCollapsed ? 'flex-col gap-2 p-3 justify-center' : 'justify-between p-4'}`}>
+        <div className={`flex items-center ${isCollapsed ? 'justify-center' : 'gap-3'} animate-fade-in`}>
+          <div className="w-10 h-10 rounded-xl gradient-primary flex items-center justify-center shadow-lg shadow-primary-500/20 flex-shrink-0">
+            <Sparkles className="w-5 h-5 text-white" />
+          </div>
+          {!isCollapsed && (
             <div>
               <h2 className="font-bold text-surface-50 text-lg leading-tight">TaskFlow</h2>
               <p className="text-xs text-surface-400">Team Manager</p>
             </div>
-          </div>
-        )}
-
-        {isCollapsed && (
-          <div className="w-10 h-10 rounded-xl gradient-primary flex items-center justify-center mx-auto shadow-lg shadow-primary-500/20">
-            <Sparkles className="w-5 h-5 text-white" />
-          </div>
-        )}
+          )}
+        </div>
 
         {/* Close button on mobile */}
         <button
           onClick={onClose}
-          className="lg:hidden p-1.5 rounded-lg hover:bg-surface-700/50 text-surface-400 transition-colors"
+          className="lg:hidden p-1.5 rounded-lg hover:bg-surface-800 text-surface-400 transition-colors"
         >
           <X className="w-5 h-5" />
         </button>
@@ -77,7 +71,7 @@ export default function Sidebar({ isOpen, isCollapsed, onClose, onToggleCollapse
         {/* Collapse toggle on desktop */}
         <button
           onClick={onToggleCollapse}
-          className="hidden lg:flex p-1.5 rounded-lg hover:bg-surface-700/50 text-surface-400 transition-colors"
+          className={`hidden lg:flex p-1.5 rounded-lg hover:bg-surface-800 text-surface-400 transition-colors ${isCollapsed ? 'mt-1' : ''}`}
         >
           {isCollapsed ? <ChevronRight className="w-4 h-4" /> : <ChevronLeft className="w-4 h-4" />}
         </button>
