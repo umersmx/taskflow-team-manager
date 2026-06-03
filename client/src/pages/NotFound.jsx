@@ -1,13 +1,11 @@
 import { Link } from 'react-router-dom';
-import { Home, Sparkles } from 'lucide-react';
+import { Home } from 'lucide-react';
 
 export default function NotFound() {
   return (
     <div className="auth-bg min-h-screen flex items-center justify-center p-4">
       <div className="text-center animate-scale-in">
-        <div className="inline-flex items-center justify-center w-20 h-20 rounded-2xl gradient-primary mb-6 shadow-xl shadow-primary-500/25">
-          <Sparkles className="w-10 h-10 text-white" />
-        </div>
+        <img src="/logo.png" className="h-20 mx-auto mb-6 object-contain" alt="TaskFlow Logo" />
 
         <h1 className="text-6xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-primary-400 to-accent-400 mb-2">
           404

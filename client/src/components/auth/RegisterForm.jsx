@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
-import { Eye, EyeOff, UserPlus, Loader2, Sparkles, Check, X } from 'lucide-react';
+import { Eye, EyeOff, UserPlus, Loader2, Check, X } from 'lucide-react';
 import toast from 'react-hot-toast';
 
 export default function RegisterForm() {
@@ -61,9 +61,7 @@ export default function RegisterForm() {
       <div className="w-full max-w-md animate-scale-in relative">
         {/* Logo area */}
         <div className="text-center mb-8">
-          <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl gradient-primary mb-4 shadow-lg shadow-primary-500/25">
-            <Sparkles className="w-8 h-8 text-white" />
-          </div>
+          <img src="/logo.png" className="h-16 mx-auto mb-4 object-contain" alt="TaskFlow Logo" />
           <h1 className="text-3xl font-bold text-surface-50">Create account</h1>
           <p className="text-surface-400 mt-2">Get started with TaskFlow today</p>
         </div>

@@ -48,14 +48,22 @@ export default function Sidebar({ isOpen, isCollapsed, onClose, onToggleCollapse
     >
       {/* Header */}
       <div className={`flex items-center border-b border-surface-700/30 ${isCollapsed ? 'flex-col gap-2 p-3 justify-center' : 'justify-between p-4'}`}>
-        <div className={`flex items-center ${isCollapsed ? 'justify-center' : 'gap-3'} animate-fade-in`}>
-          <div className="w-10 h-10 rounded-xl gradient-primary flex items-center justify-center shadow-lg shadow-primary-500/20 flex-shrink-0">
-            <Sparkles className="w-5 h-5 text-white" />
-          </div>
-          {!isCollapsed && (
-            <div>
-              <h2 className="font-bold text-surface-50 text-lg leading-tight">TaskFlow</h2>
-              <p className="text-xs text-surface-400">Team Manager</p>
+        <div className={`flex items-center ${isCollapsed ? 'justify-center' : ''} animate-fade-in`}>
+          {isCollapsed ? (
+            <div className="w-10 h-10 overflow-hidden rounded-xl flex-shrink-0 border border-surface-700/30">
+              <img
+                src="/logo.png"
+                alt="TaskFlow"
+                className="w-full h-full object-cover object-left"
+              />
+            </div>
+          ) : (
+            <div className="h-10 flex items-center">
+              <img
+                src="/logo.png"
+                alt="TaskFlow"
+                className="h-8 object-contain"
+              />
             </div>
           )}
         </div>
