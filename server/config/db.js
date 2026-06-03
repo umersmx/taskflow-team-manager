@@ -51,7 +51,11 @@ function translateSql(sql, params = []) {
   const newParams = [];
   translatedSql = translatedSql.replace(/\$(\d+)/g, (match, num) => {
     const idx = parseInt(num, 10) - 1;
-    newParams.push(params[idx]);
+    let val = params[idx];
+    if (val instanceof Date) {
+      val = val.toISOString();
+    }
+    newParams.push(val);
     return '?';
   });
   
