@@ -101,23 +101,27 @@ To test the application locally with your database, you can log in using the exi
 
 ---
 
-## ☁️ Cloud Deployment (Vercel & Render)
+## ☁️ Cloud Deployment (Vercel & Railway)
 
-Since this project has been fully optimized for cross-domain cookie authentication, you can deploy it to free hosting providers:
+The application is deployed online and connects to a remote Neon PostgreSQL database:
 
-### 1. Backend Service (Render)
-*   **Root Directory**: `server`
+*   **Production Frontend (Vercel)**: [https://client-gamma-nine-54.vercel.app](https://client-gamma-nine-54.vercel.app)
+*   **Production Backend (Railway)**: [https://taskflow-production-11cf.up.railway.app](https://taskflow-production-11cf.up.railway.app)
+
+### 1. Backend Service (Railway)
+*   **Root Directory**: `server` (or root with script delegation)
 *   **Environment Variables**:
     *   `NODE_ENV` = `production`
     *   `DATABASE_URL` = *(Your Neon PostgreSQL connection string)*
     *   `SESSION_SECRET` = *(Any secure random secret)*
-    *   `CLIENT_URL` = *(Your frontend Vercel URL, e.g., `https://your-app.vercel.app`)*
+    *   `CLIENT_URL` = `https://client-gamma-nine-54.vercel.app` (Your frontend Vercel URL)
 
 ### 2. Frontend App (Vercel)
 *   **Root Directory**: `client`
 *   **Framework Preset**: `Vite`
 *   **Environment Variables**:
-    *   `VITE_API_URL` = `https://your-backend.onrender.com/api` (Remember to append `/api`)
+    *   `VITE_API_URL` = `https://taskflow-production-11cf.up.railway.app/api` (Remember to append `/api`)
+
 
 ---
 
