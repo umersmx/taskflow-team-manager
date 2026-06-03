@@ -376,7 +376,7 @@ export default function Landing() {
           </div>
           <div className="flex gap-6 text-xs text-surface-500 font-medium">
             <span>Free Evaluation Version</span>
-            <span>Made with ❤</span>
+            <span>Made with ❤ By Umer Farooq</span>
           </div>
         </div>
       </footer>
