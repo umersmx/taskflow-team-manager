@@ -32,7 +32,7 @@ export default function Modal({ isOpen, onClose, title, children, size = 'md' })
       <div className={`relative w-full ${sizeClasses[size]} glass rounded-2xl shadow-2xl shadow-black/40 border border-surface-700/30 animate-scale-in max-h-[90vh] overflow-y-auto`}>
         {/* Header */}
         <div className="flex items-center justify-between p-5 border-b border-surface-700/30">
-          <h2 className="text-lg font-semibold text-white">{title}</h2>
+          <h2 className="text-lg font-semibold text-surface-50">{title}</h2>
           <button
             onClick={onClose}
             className="p-1.5 rounded-lg hover:bg-surface-700/50 text-surface-400 hover:text-surface-200 transition-colors"

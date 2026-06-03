@@ -81,7 +81,7 @@ export default function Navbar({ onMenuClick }) {
                 <div className="fixed inset-0 z-40" onClick={() => setShowDropdown(false)} />
                 <div className="absolute right-0 mt-2 w-56 glass rounded-xl shadow-xl shadow-black/30 border border-surface-700/30 z-50 animate-scale-in overflow-hidden">
                   <div className="p-3 border-b border-surface-700/30">
-                    <p className="text-sm font-medium text-white">{user?.name}</p>
+                    <p className="text-sm font-medium text-surface-50">{user?.name}</p>
                     <p className="text-xs text-surface-400 truncate">{user?.email}</p>
                   </div>
                   <div className="p-1.5">

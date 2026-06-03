@@ -1,18 +1,19 @@
 @import "tailwindcss";
 
-/* ── Custom Theme Configuration ── */
+/* ── Custom Theme Configuration (Nordic Minimalist) ── */
 @theme {
-  --color-primary-50: #eef2ff;
-  --color-primary-100: #e0e7ff;
-  --color-primary-200: #c7d2fe;
-  --color-primary-300: #a5b4fc;
-  --color-primary-400: #818cf8;
-  --color-primary-500: #6366f1;
-  --color-primary-600: #4f46e5;
-  --color-primary-700: #4338ca;
-  --color-primary-800: #3730a3;
-  --color-primary-900: #312e81;
-  --color-primary-950: #1e1b4b;
+  /* Premium Emerald Green as Primary & Accent (Success/Actions) */
+  --color-primary-50: #ecfdf5;
+  --color-primary-100: #d1fae5;
+  --color-primary-200: #a7f3d0;
+  --color-primary-300: #6ee7b7;
+  --color-primary-400: #34d399;
+  --color-primary-500: #10b981; /* Emerald 500 */
+  --color-primary-600: #059669; /* Emerald 600 */
+  --color-primary-700: #047857; /* Emerald 700 */
+  --color-primary-800: #065f46; /* Emerald 800 */
+  --color-primary-900: #064e3b;
+  --color-primary-950: #022c22;
 
   --color-accent-50: #ecfdf5;
   --color-accent-100: #d1fae5;
@@ -25,17 +26,18 @@
   --color-accent-800: #065f46;
   --color-accent-900: #064e3b;
 
-  --color-surface-50: #f8fafc;
-  --color-surface-100: #f1f5f9;
-  --color-surface-200: #e2e8f0;
-  --color-surface-300: #cbd5e1;
-  --color-surface-400: #94a3b8;
-  --color-surface-500: #64748b;
-  --color-surface-600: #475569;
-  --color-surface-700: #334155;
-  --color-surface-800: #1e293b;
-  --color-surface-900: #0f172a;
-  --color-surface-950: #020617;
+  /* Nordic Minimalist Light Zinc Scale (Inverted for compatibility) */
+  --color-surface-50: #18181b;   /* Zinc 900 (Dark text) */
+  --color-surface-100: #27272a;  /* Zinc 800 (Softer black text - Notion style) */
+  --color-surface-200: #3f3f46;  /* Zinc 700 */
+  --color-surface-300: #52525b;  /* Zinc 600 */
+  --color-surface-400: #71717a;  /* Zinc 500 */
+  --color-surface-500: #a1a1aa;  /* Zinc 400 */
+  --color-surface-600: #d4d4d8;  /* Zinc 300 */
+  --color-surface-700: #e4e4e7;  /* Zinc 200 (Clean borders & dividers) */
+  --color-surface-800: #f4f4f5;  /* Zinc 100 (Secondary buttons / inputs / search) */
+  --color-surface-900: #ffffff;  /* Pure White (Cards, Panels, Modals) */
+  --color-surface-950: #fafafa;  /* Zinc 50 (Calm primary page background) */
 
   --color-danger-400: #f87171;
   --color-danger-500: #ef4444;
@@ -88,13 +90,6 @@
 /* ── Base Styles ── */
 body {
   margin: 0;
-}
-
-html {
-  scroll-behavior: smooth;
-}
-
-body {
   font-family: 'Inter', system-ui, -apple-system, sans-serif;
   background: var(--color-surface-950);
   color: var(--color-surface-100);
@@ -103,54 +98,58 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* ── Custom Scrollbar ── */
+html {
+  scroll-behavior: smooth;
+}
+
+/* ── Custom Scrollbar (Sophisticated/Minimalist) ── */
 ::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
+  width: 5px;
+  height: 5px;
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--color-surface-900);
+  background: var(--color-surface-950);
 }
 
 ::-webkit-scrollbar-thumb {
   background: var(--color-surface-600);
-  border-radius: 3px;
+  border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
   background: var(--color-surface-500);
 }
 
-/* ── Glass Morphism ── */
+/* ── Glass Morphism (Light/Refined) ── */
 .glass {
-  background: rgba(15, 23, 42, 0.6);
+  background: rgba(255, 255, 255, 0.75);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(148, 163, 184, 0.1);
+  border: 1px solid rgba(228, 228, 231, 0.6); /* Zinc 200 border */
 }
 
 .glass-light {
-  background: rgba(30, 41, 59, 0.5);
+  background: rgba(255, 255, 255, 0.45);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(148, 163, 184, 0.08);
+  border: 1px solid rgba(228, 228, 231, 0.4);
 }
 
-/* ── Gradient Backgrounds ── */
+/* ── Gradient Backgrounds (Light & Muted) ── */
 .gradient-mesh {
   background:
-    radial-gradient(at 20% 20%, rgba(99, 102, 241, 0.15) 0, transparent 50%),
-    radial-gradient(at 80% 80%, rgba(16, 185, 129, 0.1) 0, transparent 50%),
-    radial-gradient(at 50% 50%, rgba(79, 70, 229, 0.05) 0, transparent 50%);
+    radial-gradient(at 10% 10%, rgba(16, 185, 129, 0.04) 0, transparent 40%),
+    radial-gradient(at 90% 90%, rgba(5, 150, 105, 0.02) 0, transparent 45%),
+    radial-gradient(at 50% 50%, rgba(16, 185, 129, 0.01) 0, transparent 40%);
 }
 
 .gradient-primary {
-  background: linear-gradient(135deg, var(--color-primary-600), var(--color-primary-800));
+  background: linear-gradient(135deg, var(--color-primary-500), var(--color-primary-700));
 }
 
 .gradient-accent {
-  background: linear-gradient(135deg, var(--color-accent-500), var(--color-primary-600));
+  background: linear-gradient(135deg, var(--color-primary-400), var(--color-primary-600));
 }
 
 .gradient-border {
@@ -163,7 +162,7 @@ body {
   inset: 0;
   padding: 1px;
   border-radius: inherit;
-  background: linear-gradient(135deg, var(--color-primary-500), var(--color-accent-500));
+  background: linear-gradient(135deg, var(--color-primary-400), var(--color-primary-600));
   mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   mask-composite: exclude;
@@ -175,9 +174,9 @@ body {
 .auth-bg {
   background: var(--color-surface-950);
   background-image:
-    radial-gradient(at 0% 0%, rgba(99, 102, 241, 0.2) 0, transparent 50%),
-    radial-gradient(at 100% 100%, rgba(16, 185, 129, 0.15) 0, transparent 50%),
-    radial-gradient(at 50% 50%, rgba(99, 102, 241, 0.05) 0, transparent 50%);
+    radial-gradient(at 0% 0%, rgba(16, 185, 129, 0.05) 0, transparent 50%),
+    radial-gradient(at 100% 100%, rgba(5, 150, 105, 0.03) 0, transparent 50%),
+    radial-gradient(at 50% 50%, rgba(16, 185, 129, 0.01) 0, transparent 50%);
 }
 
 /* ── Transitions ── */

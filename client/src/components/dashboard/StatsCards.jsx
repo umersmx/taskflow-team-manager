@@ -15,7 +15,7 @@ export default function StatsCards({ tasks, teams }) {
       label: 'Total Tasks',
       value: totalTasks,
       icon: ListTodo,
-      color: 'text-primary-400',
+      color: 'text-primary-600',
       bg: 'bg-primary-500/10',
       border: 'border-primary-500/20',
     },
@@ -23,7 +23,7 @@ export default function StatsCards({ tasks, teams }) {
       label: 'In Progress',
       value: inProgressTasks,
       icon: Clock,
-      color: 'text-warning-400',
+      color: 'text-warning-600',
       bg: 'bg-warning-500/10',
       border: 'border-warning-500/20',
     },
@@ -31,7 +31,7 @@ export default function StatsCards({ tasks, teams }) {
       label: 'Completed',
       value: completedTasks,
       icon: CheckCircle2,
-      color: 'text-accent-400',
+      color: 'text-accent-600',
       bg: 'bg-accent-500/10',
       border: 'border-accent-500/20',
     },
@@ -39,7 +39,7 @@ export default function StatsCards({ tasks, teams }) {
       label: 'Overdue',
       value: overdueTasks,
       icon: AlertTriangle,
-      color: 'text-danger-400',
+      color: 'text-danger-600',
       bg: 'bg-danger-500/10',
       border: 'border-danger-500/20',
     },
@@ -47,17 +47,17 @@ export default function StatsCards({ tasks, teams }) {
       label: 'Teams',
       value: teams.length,
       icon: Users,
-      color: 'text-primary-300',
-      bg: 'bg-primary-400/10',
-      border: 'border-primary-400/20',
+      color: 'text-primary-600',
+      bg: 'bg-primary-500/10',
+      border: 'border-primary-500/20',
     },
     {
       label: 'Completion',
       value: `${completionRate}%`,
       icon: TrendingUp,
-      color: 'text-accent-300',
-      bg: 'bg-accent-400/10',
-      border: 'border-accent-400/20',
+      color: 'text-accent-600',
+      bg: 'bg-accent-500/10',
+      border: 'border-accent-500/20',
     },
   ];
 
@@ -66,13 +66,13 @@ export default function StatsCards({ tasks, teams }) {
       {stats.map((stat, i) => (
         <div
           key={stat.label}
-          className={`glass-light rounded-2xl p-4 border ${stat.border} hover:scale-[1.02] transition-all-300 animate-slide-up`}
+          className={`glass rounded-2xl p-4 border ${stat.border} hover:scale-[1.02] transition-all-300 animate-slide-up`}
           style={{ animationDelay: `${i * 0.05}s` }}
         >
           <div className={`w-10 h-10 rounded-xl ${stat.bg} flex items-center justify-center mb-3`}>
             <stat.icon className={`w-5 h-5 ${stat.color}`} />
           </div>
-          <p className="text-2xl font-bold text-white">{stat.value}</p>
+          <p className="text-2xl font-bold text-surface-50">{stat.value}</p>
           <p className="text-xs text-surface-400 mt-0.5">{stat.label}</p>
         </div>
       ))}

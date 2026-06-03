@@ -64,7 +64,7 @@ export default function RegisterForm() {
           <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl gradient-primary mb-4 shadow-lg shadow-primary-500/25">
             <Sparkles className="w-8 h-8 text-white" />
           </div>
-          <h1 className="text-3xl font-bold text-white">Create account</h1>
+          <h1 className="text-3xl font-bold text-surface-50">Create account</h1>
           <p className="text-surface-400 mt-2">Get started with TaskFlow today</p>
         </div>
 
@@ -81,7 +81,7 @@ export default function RegisterForm() {
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 placeholder="John Doe"
-                className="w-full px-4 py-3 rounded-xl bg-surface-800/50 border border-surface-700/50 text-white placeholder-surface-500 focus:outline-none focus:ring-2 focus:ring-primary-500/50 focus:border-primary-500/50 transition-all-300"
+                className="w-full px-4 py-3 rounded-xl bg-surface-800/50 border border-surface-700/50 text-surface-50 placeholder-surface-500 focus:outline-none focus:ring-2 focus:ring-primary-500/50 focus:border-primary-500/50 transition-all-300"
                 required
               />
             </div>
@@ -96,7 +96,7 @@ export default function RegisterForm() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="you@example.com"
-                className="w-full px-4 py-3 rounded-xl bg-surface-800/50 border border-surface-700/50 text-white placeholder-surface-500 focus:outline-none focus:ring-2 focus:ring-primary-500/50 focus:border-primary-500/50 transition-all-300"
+                className="w-full px-4 py-3 rounded-xl bg-surface-800/50 border border-surface-700/50 text-surface-50 placeholder-surface-500 focus:outline-none focus:ring-2 focus:ring-primary-500/50 focus:border-primary-500/50 transition-all-300"
                 required
               />
             </div>
@@ -112,7 +112,7 @@ export default function RegisterForm() {
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="••••••••"
-                  className="w-full px-4 py-3 pr-12 rounded-xl bg-surface-800/50 border border-surface-700/50 text-white placeholder-surface-500 focus:outline-none focus:ring-2 focus:ring-primary-500/50 focus:border-primary-500/50 transition-all-300"
+                  className="w-full px-4 py-3 pr-12 rounded-xl bg-surface-800/50 border border-surface-700/50 text-surface-50 placeholder-surface-500 focus:outline-none focus:ring-2 focus:ring-primary-500/50 focus:border-primary-500/50 transition-all-300"
                   required
                 />
                 <button
@@ -153,7 +153,7 @@ export default function RegisterForm() {
                 value={confirmPassword}
                 onChange={(e) => setConfirmPassword(e.target.value)}
                 placeholder="••••••••"
-                className={`w-full px-4 py-3 rounded-xl bg-surface-800/50 border text-white placeholder-surface-500 focus:outline-none focus:ring-2 focus:ring-primary-500/50 transition-all-300 ${
+                className={`w-full px-4 py-3 rounded-xl bg-surface-800/50 border text-surface-50 placeholder-surface-500 focus:outline-none focus:ring-2 focus:ring-primary-500/50 transition-all-300 ${
                   confirmPassword && confirmPassword !== password
                     ? 'border-danger-500/50'
                     : 'border-surface-700/50 focus:border-primary-500/50'

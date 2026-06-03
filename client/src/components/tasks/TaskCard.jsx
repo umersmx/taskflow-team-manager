@@ -2,17 +2,17 @@ import { format } from 'date-fns';
 import { Calendar, User, Flag, Pencil, Trash2 } from 'lucide-react';
 
 const statusConfig = {
-  todo: { label: 'To Do', color: 'bg-surface-500/20 text-surface-300 border-surface-500/30' },
-  in_progress: { label: 'In Progress', color: 'bg-primary-500/15 text-primary-400 border-primary-500/30' },
-  review: { label: 'Review', color: 'bg-warning-500/15 text-warning-400 border-warning-500/30' },
-  done: { label: 'Done', color: 'bg-accent-500/15 text-accent-400 border-accent-500/30' },
+  todo: { label: 'To Do', color: 'bg-surface-800 text-surface-300 border-surface-700' },
+  in_progress: { label: 'In Progress', color: 'bg-primary-500/10 text-primary-600 border-primary-500/20' },
+  review: { label: 'Review', color: 'bg-warning-500/10 text-warning-600 border-warning-500/20' },
+  done: { label: 'Done', color: 'bg-accent-500/10 text-accent-600 border-accent-500/20' },
 };
 
 const priorityConfig = {
   low: { label: 'Low', color: 'text-surface-400', dot: 'bg-surface-400' },
-  medium: { label: 'Medium', color: 'text-primary-400', dot: 'bg-primary-400' },
-  high: { label: 'High', color: 'text-warning-400', dot: 'bg-warning-400' },
-  urgent: { label: 'Urgent', color: 'text-danger-400', dot: 'bg-danger-400' },
+  medium: { label: 'Medium', color: 'text-primary-600', dot: 'bg-primary-500' },
+  high: { label: 'High', color: 'text-warning-600', dot: 'bg-warning-500' },
+  urgent: { label: 'Urgent', color: 'text-danger-600', dot: 'bg-danger-500' },
 };
 
 export default function TaskCard({ task, onEdit, onDelete }) {
@@ -21,22 +21,22 @@ export default function TaskCard({ task, onEdit, onDelete }) {
   const isOverdue = task.due_date && new Date(task.due_date) < new Date() && task.status !== 'done';
 
   return (
-    <div className="glass-light rounded-xl p-4 border border-surface-700/20 hover:border-surface-600/40 transition-all-300 group hover:shadow-lg hover:shadow-black/10 animate-fade-in">
+    <div className="glass rounded-xl p-4 border border-surface-700/60 hover:border-surface-500/40 transition-all-300 group hover:shadow-md animate-fade-in">
       <div className="flex items-start justify-between gap-3">
         <div className="flex-1 min-w-0">
           {/* Status + Priority */}
           <div className="flex items-center gap-2 mb-2">
-            <span className={`inline-flex items-center px-2 py-0.5 rounded-md text-[11px] font-medium border ${status.color}`}>
+            <span className={`inline-flex items-center px-2 py-0.5 rounded-md text-[11px] font-semibold border ${status.color}`}>
               {status.label}
             </span>
             <span className="flex items-center gap-1">
               <span className={`w-1.5 h-1.5 rounded-full ${priority.dot}`} />
-              <span className={`text-[11px] font-medium ${priority.color}`}>{priority.label}</span>
+              <span className={`text-[11px] font-semibold ${priority.color}`}>{priority.label}</span>
             </span>
           </div>
 
           {/* Title */}
-          <h3 className={`text-sm font-semibold mb-1 ${task.status === 'done' ? 'text-surface-500 line-through' : 'text-white'}`}>
+          <h3 className={`text-sm font-semibold mb-1 ${task.status === 'done' ? 'text-surface-500 line-through' : 'text-surface-50'}`}>
             {task.title}
           </h3>
 

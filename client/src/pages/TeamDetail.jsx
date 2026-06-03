@@ -174,7 +174,7 @@ export default function TeamDetail() {
 
   if (!team) return null;
 
-  const inputClass = "w-full px-3 py-2.5 rounded-xl bg-surface-800/50 border border-surface-700/50 text-white text-sm placeholder-surface-500 focus:outline-none focus:ring-2 focus:ring-primary-500/50 transition-all-300";
+  const inputClass = "w-full px-3 py-2.5 rounded-xl bg-surface-800/50 border border-surface-700/50 text-surface-50 text-sm placeholder-surface-500 focus:outline-none focus:ring-2 focus:ring-primary-500/50 transition-all-300";
 
   return (
     <div className="space-y-6">
@@ -195,7 +195,7 @@ export default function TeamDetail() {
                 {team.name.charAt(0).toUpperCase()}
               </div>
               <div>
-                <h1 className="text-2xl font-bold text-white">{team.name}</h1>
+                <h1 className="text-2xl font-bold text-surface-50">{team.name}</h1>
                 {team.description && (
                   <p className="text-sm text-surface-400 mt-0.5">{team.description}</p>
                 )}
@@ -253,7 +253,7 @@ export default function TeamDetail() {
         <div className="lg:col-span-1 space-y-4 animate-slide-up">
           <div className="flex items-center gap-2">
             <Users className="w-4 h-4 text-primary-400" />
-            <h2 className="text-sm font-semibold text-white">Members</h2>
+            <h2 className="text-sm font-semibold text-surface-50">Members</h2>
             <span className="text-xs text-surface-500 bg-surface-800/50 px-2 py-0.5 rounded-full">
               {team.members?.length || 0}
             </span>
@@ -289,7 +289,7 @@ export default function TeamDetail() {
         <div className="lg:col-span-2 space-y-4 animate-slide-up" style={{ animationDelay: '0.1s' }}>
           <div className="flex items-center gap-2">
             <ListTodo className="w-4 h-4 text-primary-400" />
-            <h2 className="text-sm font-semibold text-white">Tasks</h2>
+            <h2 className="text-sm font-semibold text-surface-50">Tasks</h2>
             <span className="text-xs text-surface-500 bg-surface-800/50 px-2 py-0.5 rounded-full">
               {tasks.length}
             </span>

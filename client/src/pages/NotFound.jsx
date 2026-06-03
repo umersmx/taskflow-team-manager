@@ -12,7 +12,7 @@ export default function NotFound() {
         <h1 className="text-6xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-primary-400 to-accent-400 mb-2">
           404
         </h1>
-        <h2 className="text-xl font-semibold text-white mb-2">Page not found</h2>
+        <h2 className="text-xl font-semibold text-surface-50 mb-2">Page not found</h2>
         <p className="text-surface-400 mb-8 max-w-sm mx-auto">
           The page you're looking for doesn't exist or has been moved.
         </p>

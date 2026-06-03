@@ -122,7 +122,7 @@ export default function Dashboard() {
       {/* Header */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 animate-fade-in">
         <div>
-          <h1 className="text-2xl md:text-3xl font-bold text-white">
+          <h1 className="text-2xl md:text-3xl font-bold text-surface-50">
             Welcome back, <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-400 to-accent-400">{user?.name?.split(' ')[0]}</span>
           </h1>
           <p className="text-surface-400 mt-1">Here's what's happening with your teams today.</p>
@@ -156,7 +156,7 @@ export default function Dashboard() {
       <div className="space-y-4">
         <div className="flex items-center gap-2">
           <ListTodo className="w-5 h-5 text-primary-400" />
-          <h2 className="text-lg font-semibold text-white">Tasks</h2>
+          <h2 className="text-lg font-semibold text-surface-50">Tasks</h2>
           <span className="text-xs text-surface-500 bg-surface-800/50 px-2 py-0.5 rounded-full">{tasks.length}</span>
         </div>
 

@@ -54,7 +54,7 @@ export default function Sidebar({ isOpen, isCollapsed, onClose, onToggleCollapse
               <Sparkles className="w-5 h-5 text-white" />
             </div>
             <div>
-              <h2 className="font-bold text-white text-lg leading-tight">TaskFlow</h2>
+              <h2 className="font-bold text-surface-50 text-lg leading-tight">TaskFlow</h2>
               <p className="text-xs text-surface-400">Team Manager</p>
             </div>
           </div>
@@ -92,8 +92,8 @@ export default function Sidebar({ isOpen, isCollapsed, onClose, onToggleCollapse
           className={({ isActive }) =>
             `flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all-300 group
             ${isActive
-              ? 'bg-primary-500/15 text-primary-400 shadow-sm'
-              : 'text-surface-400 hover:bg-surface-700/30 hover:text-surface-200'
+              ? 'bg-primary-500/10 text-primary-600 shadow-sm border border-primary-500/20'
+              : 'text-surface-400 hover:bg-surface-800 hover:text-surface-100'
             } ${isCollapsed ? 'justify-center' : ''}`
           }
         >
@@ -113,7 +113,7 @@ export default function Sidebar({ isOpen, isCollapsed, onClose, onToggleCollapse
                   // Trigger team creation modal
                   setTimeout(() => window.dispatchEvent(new CustomEvent('open-create-team')), 100);
                 }}
-                className="p-1 rounded-md hover:bg-surface-700/50 text-surface-400 hover:text-primary-400 transition-colors"
+                className="p-1 rounded-md hover:bg-surface-700/50 text-surface-400 hover:text-primary-600 transition-colors"
               >
                 <Plus className="w-3.5 h-3.5" />
               </button>
@@ -135,8 +135,8 @@ export default function Sidebar({ isOpen, isCollapsed, onClose, onToggleCollapse
                 className={({ isActive }) =>
                   `flex items-center gap-3 px-3 py-2 rounded-xl text-sm transition-all-300
                   ${isActive
-                    ? 'bg-primary-500/10 text-primary-400'
-                    : 'text-surface-400 hover:bg-surface-700/30 hover:text-surface-200'
+                    ? 'bg-primary-500/10 text-primary-600 border border-primary-500/15'
+                    : 'text-surface-400 hover:bg-surface-800 hover:text-surface-100'
                   } ${isCollapsed ? 'justify-center' : ''}`
                 }
               >
