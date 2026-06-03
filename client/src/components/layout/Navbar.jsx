@@ -37,7 +37,7 @@ export default function Navbar({ onMenuClick }) {
   }
 
   return (
-    <header className="sticky top-0 z-30 glass border-b border-surface-700/30">
+    <header className="sticky top-0 z-40 glass border-b border-surface-700/30">
       <div className="flex items-center justify-between px-4 md:px-6 h-16">
         {/* Left: Mobile menu */}
         <button
@@ -63,7 +63,7 @@ export default function Navbar({ onMenuClick }) {
           </button>
 
           {/* User dropdown */}
-          <div className="relative">
+          <div className="relative z-50">
             <button
               onClick={() => setShowDropdown(!showDropdown)}
               className="flex items-center gap-3 px-3 py-1.5 rounded-xl hover:bg-surface-700/50 transition-colors"
@@ -79,7 +79,7 @@ export default function Navbar({ onMenuClick }) {
             {showDropdown && (
               <>
                 <div className="fixed inset-0 z-40" onClick={() => setShowDropdown(false)} />
-                <div className="absolute right-0 mt-2 w-56 glass rounded-xl shadow-xl shadow-black/30 border border-surface-700/30 z-50 animate-scale-in overflow-hidden">
+                <div className="absolute right-0 mt-2 w-56 bg-surface-900 rounded-xl shadow-xl shadow-black/10 border border-surface-700/50 z-50 animate-scale-in overflow-hidden">
                   <div className="p-3 border-b border-surface-700/30">
                     <p className="text-sm font-medium text-surface-50">{user?.name}</p>
                     <p className="text-xs text-surface-400 truncate">{user?.email}</p>
