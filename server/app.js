@@ -10,6 +10,10 @@ const taskRoutes = require('./routes/tasks');
 
 const app = express();
 
+// Trust reverse proxy (Railway, Render, etc.) to set secure cookies
+app.set('trust proxy', 1);
+
+
 // ── CORS Configuration ──
 app.use(
   cors({
