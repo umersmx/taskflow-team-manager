@@ -33,7 +33,7 @@ export default function Layout() {
       {/* Main content */}
       <div className={`transition-all duration-300 ${sidebarCollapsed ? 'lg:ml-20' : 'lg:ml-72'}`}>
         <Navbar onMenuClick={() => setSidebarOpen(true)} />
-        <main className="p-4 md:p-6 lg:p-8 max-w-7xl mx-auto">
+        <main className="relative z-10 p-4 md:p-6 lg:p-8 max-w-7xl mx-auto">
           <Outlet />
         </main>
       </div>

@@ -37,7 +37,7 @@ export default function Navbar({ onMenuClick }) {
   }
 
   return (
-    <header className="sticky top-0 z-40 glass border-b border-surface-700/30">
+    <header className="sticky top-0 z-40 glass border-b border-surface-700/30 isolate">
       <div className="flex items-center justify-between px-4 md:px-6 h-16">
         {/* Left: Mobile menu */}
         <button
