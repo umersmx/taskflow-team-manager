@@ -105,7 +105,7 @@ To test the application locally with your database, you can log in using the exi
 
 The application is deployed online and connects to a remote Neon PostgreSQL database:
 
-*   **Production Frontend (Vercel)**: [https://client-gamma-nine-54.vercel.app](https://client-gamma-nine-54.vercel.app)
+*   **Production Frontend (Vercel)**: [https://taskflow-team.vercel.app/](https://taskflow-team.vercel.app/)
 *   **Production Backend (Railway)**: [https://taskflow-production-11cf.up.railway.app](https://taskflow-production-11cf.up.railway.app)
 
 ### 1. Backend Service (Railway)
